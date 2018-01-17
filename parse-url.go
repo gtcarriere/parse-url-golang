@@ -17,36 +17,33 @@
 
 package main
 
-
-//Imports requiered packages
+//Imports required packages
 import (
+	"bufio"
 	"fmt"
-    "strings"
-    "os"
-    "bufio"
+	"os"
+	"strings"
 )
 
-
 func main() {
-    
-    // Code to get input from user (URL to parse)
-    reader := bufio.NewReader(os.Stdin)
-    fmt.Print("Please enter the URL to parse: ")
-    url, _ := reader.ReadString('\n')
-  
-   // If URL is NOT equal to nothing, then parse it, and print the parsed URL.
-   if url != "" {
-       // Define the variable parsed_url and use strings.Replace to replace slashes with /n
-       parsed_url := strings.Replace(url, "/", "\n", -1) 
-       // Print one blank line before printing parsed url
-       fmt.Println("\n")
-       // Print parsed URL
-       fmt.Println(parsed_url) 
-   
-       } else {
-    // If URL IS empty, then ask user to enter a URL to parse. 
-    fmt.Println("Please enter a valid URL to parse.")
-       
-       
-    }
+
+	// Code to get input from user (URL to parse)
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Please enter the URL to parse: ")
+	url, _ := reader.ReadString('\n')
+
+	// If URL is NOT equal to nothing, then parse it, and print the parsed URL.
+	if url != "" {
+		// Define the variable parsed_url and use strings.Replace to replace slashes with /n
+		parsed_url := strings.Replace(url, "/", "\n", -1)
+		// Print one blank line before printing parsed url
+		fmt.Println("\n")
+		// Print parsed URL
+		fmt.Println(parsed_url)
+
+	} else {
+		// If URL IS empty, then ask user to enter a URL to parse.
+		fmt.Println("Please enter a valid URL to parse.")
+
+	}
 }
