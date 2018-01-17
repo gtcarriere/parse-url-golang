@@ -9,7 +9,7 @@ This is still a work in progress. If it crashes, breaks your computer, or just p
 
 Clone the repo with git, or otherwise obtain a copy of all the code in this repo.
 
-Run the URL parser with > go run parse-url.go
+Run the URL parser with 'go run parse-url.go'
 
 
 
