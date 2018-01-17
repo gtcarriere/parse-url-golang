@@ -15,6 +15,10 @@ Run the URL parser with
 go run parse-url.go
 ```
 
+###### UPDATE:
+
+This is not currently working, as the program obtains user input from stdin which the Golang playground does not currently support.
+
 ~~If you want to try running it without downloading it or if you don't have the Golang compiler on your computer, then you can try~~ ~~it online at the [Golang playground](https://play.golang.org/ "Golang Playground")~~
 
 ~~Just open up parse-url.go and copy it to your clipboard, and paste in in the Golang playground.~~
