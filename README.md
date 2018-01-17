@@ -15,7 +15,7 @@ Run the URL parser with:
 go run parse-url.go
 ```
 
-###### UPDATE:
+###### Update:
 
 This is not currently working, as the program obtains user input from `stdin` which the Golang playground does not currently support.
 
