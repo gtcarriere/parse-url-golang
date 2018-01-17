@@ -17,7 +17,7 @@
 
 package main
 
-//Imports required packages
+// Imports required packages
 import (
 	"bufio"
 	"fmt"
@@ -25,25 +25,107 @@ import (
 	"strings"
 )
 
+type URL struct {
+	Protocol  string
+	Host      string
+	Path      string
+	Variables string
+}
+
+func unescape(s string, mode string) (string, error) {
+	n := 0
+	t := make([]byte, len(s)-2*n)
+	j := 0
+	for i := 0; i < len(s); {
+		t[j] = s[i]
+		j++
+		i++
+	}
+	return string(t), nil
+}
+
+func getprotocol(rawurl string) (protocol, path string, err error) {
+	for i := 0; i < len(rawurl); i++ {
+		c := rawurl[i]
+		switch {
+		case c == ':':
+			return rawurl[:i], rawurl[i+1:], nil
+		}
+	}
+	return "", rawurl, nil
+}
+
+func split(s string, c string) (string, string) {
+	i := strings.Index(s, c)
+	if i < 0 {
+		return s, ""
+	}
+	return s[:i], s[i:]
+}
+
+func Parse(rawurl string) (*URL, error) {
+	u, frag := split(rawurl, "#")
+	url, err := parse(u, false)
+
+	if err != nil {
+	}
+	if frag == "" {
+	}
+	return url, nil
+}
+
+func parse(rawurl string, viaRequest bool) (*URL, error) {
+	var rest string
+	var err error
+
+	url := new(URL)
+
+	// split off leading http, mailto, or whatever, if it exists
+	if url.Protocol, rest, err = getprotocol(rawurl); err != nil {
+	}
+	url.Protocol = strings.ToLower(url.Protocol)
+	// splits between path and variables
+	rest, url.Variables = split(rest, "?")
+
+	//splits between host and path
+	var splitHP string
+	splitHP, rest = split(rest[2:], "/")
+	url.Host = splitHP
+
+	if err := url.path(rest); err != nil {
+	}
+	return url, nil
+}
+
+func (u *URL) path(p string) error {
+	path, err := unescape(p, "")
+	if err != nil {
+		return err
+	}
+	u.Path = path
+	return nil
+}
+
 func main() {
 
 	// Code to get input from user (URL to parse)
 	reader := bufio.NewReader(os.Stdin)
 	fmt.Print("Please enter the URL to parse: ")
-	url, _ := reader.ReadString('\n')
+	s, _ := reader.ReadString('\n')
+	//s := "http://example.com/path/to/something?var1=1&&var2=2"
 
-	// If URL is NOT equal to nothing, then parse it, and print the parsed URL.
-	if url != "" {
-		// Define the variable parsed_url and use strings.Replace to replace slashes with /n
-		parsed_url := strings.Replace(url, "/", "\n", -1)
-		// Print one blank line before printing parsed url
-		fmt.Println("\n")
-		// Print parsed URL
-		fmt.Println(parsed_url)
-
-	} else {
-		// If URL IS empty, then ask user to enter a URL to parse.
-		fmt.Println("Please enter a valid URL to parse.")
-
+	// Parse the URL and ensure there are no errors.
+	url, err := Parse(s)
+	if err != nil {
+		panic(err)
 	}
+
+	fmt.Println("\n")
+	fmt.Println("\n")
+	fmt.Println("Parsed URL:")
+	fmt.Println("\n")
+	fmt.Println("Protocol:   " + url.Protocol)
+	fmt.Println("Host:       " + url.Host)
+	fmt.Println("Path:       " + url.Path)
+	fmt.Println("Variables:  " + url.Variables)
 }
