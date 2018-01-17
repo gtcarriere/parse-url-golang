@@ -12,7 +12,7 @@ Clone the repo with git, or otherwise obtain a copy of all the code in this repo
 Run the URL parser with 
 
 ```golang
-var s string
+go run parse-url.go
 ```
 
 
