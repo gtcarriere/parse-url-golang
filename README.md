@@ -3,7 +3,7 @@
 #### A simple URL parser written in Go.
 
 **Note:**
-This is still a work in progress. If it crashes, breaks your computer, or just plain doesn't work, I am not responsable for any damage that may occcour
+This is still a work in progress. If it crashes, breaks your computer, or just plain doesn't work, I am not responsible for any damage that may occur.
 
 ###### Usage:
 
@@ -21,6 +21,4 @@ This is not currently working, as the program obtains user input from `stdin` wh
 
 ~~If you want to try running it without downloading it or if you don't have the Golang compiler on your computer, then you can try~~ ~~it online at the [Golang playground](https://play.golang.org/ "Golang Playground")~~
 
-~~Just open up parse-url.go and copy it to your clipboard, and paste in in the Golang playground.~~
-
-
+~~Just open up parse-url.go and copy it to your clipboard, and paste it in the Golang playground.~~
